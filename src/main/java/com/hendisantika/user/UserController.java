@@ -56,4 +56,20 @@ public class UserController {
 
         return Status.FAILURE;
     }
+
+    @CrossOrigin()
+    @PostMapping("/logout")
+    public Status logUserOut(@Valid @RequestBody User user) {
+        List<User> users = userRepository.findAll();
+
+        for (User other : users) {
+            if (other.equals(user)) {
+                user.setLoggedIn(false);
+                userRepository.save(user);
+                return Status.SUCCESS;
+            }
+        }
+
+        return Status.FAILURE;
+    }
 }
