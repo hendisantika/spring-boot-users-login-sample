@@ -40,4 +40,20 @@ public class UserController {
         userRepository.save(newUser);
         return Status.SUCCESS;
     }
+
+    @CrossOrigin()
+    @PostMapping("/login")
+    public Status loginUser(@Valid @RequestBody User user) {
+        List<User> users = userRepository.findAll();
+
+        for (User other : users) {
+            if (other.equals(user)) {
+                user.setLoggedIn(true);
+                userRepository.save(user);
+                return Status.SUCCESS;
+            }
+        }
+
+        return Status.FAILURE;
+    }
 }
