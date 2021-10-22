@@ -30,6 +30,6 @@ public class User {
     private long id;
     private @NotBlank String username;
     private @NotBlank String password;
-    private @NotBlank boolean loggedIn;
+    private boolean loggedIn;
 
 }
