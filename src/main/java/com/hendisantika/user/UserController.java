@@ -2,6 +2,7 @@ package com.hendisantika.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,5 +72,12 @@ public class UserController {
         }
 
         return Status.FAILURE;
+    }
+
+    @CrossOrigin()
+    @DeleteMapping("/users/all")
+    public Status deleteUsers() {
+        userRepository.deleteAll();
+        return Status.SUCCESS;
     }
 }
